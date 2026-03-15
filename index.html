@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Prenotazioni Mare</title>
 
   <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAE4klEQVRYha2XbWhTVxjHf8+5Se5N0rRpbGvsNl1ljjldO1/xg0Lnl9l2jE0QNoTSsS/bGAiOoX4pwvZBhcHYB2EypMjUDWFM8WX7MN+mKDKdcwyEia/zpbZ2q2nec+/Zh6RJmsYkVf8QuOc8/3P+/3PueZ6TK9SIUNfa+ox4ejTOSpAO4HkgmAv/B1xHuKjhqGWoQ8MHdkZqmVeqEQLdvS8iaoPWvCPgq2VSDTGBvaLY+vDgwN+PZ2DNGm8gVvcZ2lkH4qpFuAzSwJeRGP0cH0jUbKD+jb452tE/gMx/TOFSnLXtzOrYz9/eLQ2o0g5fV+8C7XD6ScV9hma2BVZ2icsMwzjnX9XbXsqbsAPZlXMaaH4S8a4gbJ6p8SkYzcCmm8KvDwH0Pw6yJHp44N5kA519VsDHWaCjVqFAUx0AkeGxfJ+p4NR8jVW0tyNp6PxL0Nnm+Yg/uoJ9++JQ9AoCfvl8quKL3u5g8eoOAi2BfH/YzQRxgJAbgoVjvKh+rG7jeENBLtW0s26q4m7Ljct0s/it9ryJOymI2BP591Lwb6bQ1spZ7+/uC+cNIGpDralWLD6OYhNpDRtuCA8yBfGNN0qSTUudIbofQEJda+tT4r5bS5EpJ16MTDLNbz9eInI/ggIaXTCSYfzdlyJqutQMlRFPz9MQh4k74QAPHi0O4E+kdbfK1vYnFy9nohoEVqrcxfJUxKdsQnS7At32qLgv6KW9ax5KCW7NlH4iQvvrL+MLeitZmC2B7r4k4KnEWtu5kC/ef7Pyakqw/psD7DlxoRotWVPqGUp499ggV0bTLGwy+Xp5+Ur9wakhzg8nmdPg5hk16ZopCwX6YS3ERCZ7nuOZR5/rWC4Wq8ApwagL5BrQVI35yStBhhIZWn0uvr9wlR2nLxdyTODD5XP5eN4MbkczNFsG+2/VZOCqC+EimiXVmMvDVv5594lBbo6MTYifvHKPrxa05e/R/TXp84fScLRcRLlN3A3TsFpa8QSrbtAkeBqzY90N01BusyxHC7+4vFHfwYQvFgX8AMo0sZpbMaxC+oin9hpQWIAHd32Q7Mjp2IkYift3cVLJcUrUG/UdUUPHt48B3+WdNzRhWF6Ux8LdEMJsCuOuD03ZgKu+MTu2IYTyWBiWD09wWoEg7Bk6vn1MAYhiK9k/kIDGDM/Eap2FJ9SCKxDkekwTt5382HkzGpGiC04E5oaD+XbS1tyMa1yBIJ5QC1brLMzwTND57Egp1JasjxwC3X3bgE/Npun4215CuU1EKVAGoiT7LCqrhkwwAONz6+yD1mjHRjsaHBvtODipJNHrl0kODwJsiRwe2ASQL0SRGP0BHyuSw4PLksP3MXx1eIIhDK8fZVoYphdlWogyirdxfNMKRhwbO5nAScZxkgnseJTU6Ah2dCxnUM5EqNtcOgUA/u6+sAHnNDxHBYhhgAjKlT1iTiadXbVtVxoGmjsZw1kaP7jrdlkDAP5Vve1KySGQZyvPNjUI3LKhJ3p44M/i/kkFO/rTrktaq4XAyaemruWMDUtLxQGMcvzUlYux1Asr9lqkHYTFVLktKyAFeluEwHvpIztGyxGqfpz6u/vChuh+raWXXLGqAVG07FZKto4e2nm1ErGqgXE0d35UF/fGe0T0a8CrQBsTP8+vCfzuoI95Y/7DuQJXFf8D5ges3KrHxrAAAAAASUVORK5CYII=">
@@ -17,50 +17,26 @@
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
       background: #0d4a60;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      font-family: sans-serif;
-      color: #f5ede0;
-      flex-direction: column;
-      gap: 20px;
     }
-    svg { width: 80px; height: 80px; }
-    .spinner {
-      width: 40px; height: 40px;
-      border: 3px solid rgba(245,237,224,0.3);
-      border-top-color: #f5ede0;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    p { font-size: 13px; opacity: 0.6; }
   </style>
 </head>
 <body>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-    <circle cx="60" cy="60" r="60" fill="#0d4a60"/>
-    <ellipse cx="60" cy="84" rx="44" ry="10" fill="#1a6e8a"/>
-    <ellipse cx="60" cy="90" rx="44" ry="8" fill="#2a9dc4" opacity="0.7"/>
-    <rect x="36" y="54" width="48" height="36" rx="3" fill="#f5ede0"/>
-    <polygon points="28,56 60,24 92,56" fill="#52b7a0"/>
-    <rect x="50" y="68" width="20" height="22" rx="3" fill="#1a6e8a"/>
-    <rect x="38" y="60" width="10" height="9" rx="1.5" fill="#2a9dc4"/>
-    <rect x="72" y="60" width="10" height="9" rx="1.5" fill="#2a9dc4"/>
-    <circle cx="88" cy="28" r="10" fill="#e07a5f"/>
-  </svg>
-  <div class="spinner"></div>
-  <p>Caricamento...</p>
+  <iframe src="https://script.google.com/macros/s/AKfycbxXsnyE1QeJC4J1freVyFjGnzEgGhV0j1J2WVG0yri5D37O3tzuMovzXfKygQyOGGgR/exec" allowfullscreen></iframe>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
-    setTimeout(function() {
-      window.location.replace("https://script.google.com/macros/s/AKfycbxXsnyE1QeJC4J1freVyFjGnzEgGhV0j1J2WVG0yri5D37O3tzuMovzXfKygQyOGGgR/exec");
-    }, 1500);
   </script>
 </body>
 </html>
