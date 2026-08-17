@@ -17,6 +17,9 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#0d4a60">
 
+  <!-- Fallback per browser con JS disabilitato -->
+  <meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbxXsnyE1QeJC4J1freVyFjGnzEgGhV0j1J2WVG0yri5D37O3tzuMovzXfKygQyOGGgR/exec">
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
@@ -37,49 +40,37 @@
       text-align: center;
       padding: 24px;
     }
-    .wave-icon { font-size: 56px; margin-bottom: 12px; }
-    .titolo { font-size: 20px; font-weight: 600; opacity: 0.95; margin-bottom: 28px; }
-    .btn-apri {
-      display: inline-block;
-      background: #ffffff;
-      color: #0d4a60;
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 17px;
-      padding: 14px 36px;
-      border-radius: 999px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    .spinner {
+      width: 42px;
+      height: 42px;
+      border: 4px solid rgba(255,255,255,0.25);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+      margin-bottom: 20px;
     }
-    .btn-apri:active { opacity: 0.85; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    p { font-size: 16px; opacity: 0.9; margin-bottom: 18px; }
+    a {
+      color: #ffffff;
+      font-weight: 600;
+      text-decoration: underline;
+      font-size: 16px;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="wave-icon">🌊</div>
-    <p class="titolo">Prenotazioni Mare</p>
-    <a class="btn-apri" href="https://script.google.com/macros/s/AKfycbxXsnyE1QeJC4J1freVyFjGnzEgGhV0j1J2WVG0yri5D37O3tzuMovzXfKygQyOGGgR/exec">Apri l'app</a>
+    <div class="spinner"></div>
+    <p>Apertura di Prenotazioni Mare…</p>
+    <a href="https://script.google.com/macros/s/AKfycbxXsnyE1QeJC4J1freVyFjGnzEgGhV0j1J2WVG0yri5D37O3tzuMovzXfKygQyOGGgR/exec">Se non si apre, tocca qui</a>
   </div>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
-
-    var URL_APP = "https://script.google.com/macros/s/AKfycbxXsnyE1QeJC4J1freVyFjGnzEgGhV0j1J2WVG0yri5D37O3tzuMovzXfKygQyOGGgR/exec";
-
-    // Rileva se l'app è stata aperta dall'icona sulla schermata Home
-    // (standalone) invece che da una scheda normale del browser.
-    // In quel caso il salvataggio è già avvenuto in passato, quindi
-    // il redirect automatico non causa più il problema dell'URL sbagliato.
-    var isStandalone =
-      window.matchMedia('(display-mode: standalone)').matches ||
-      window.navigator.standalone === true; // Safari iOS
-
-    if (isStandalone) {
-      window.location.replace(URL_APP);
-    }
-    // Se invece siamo in una scheda normale del browser, non reindirizza:
-    // resta visibile il pulsante "Apri l'app", così puoi salvare
-    // l'indirizzo github.io corretto nei Preferiti / schermata Home.
+    // Redirect JS immediato: nessun iframe, quindi nessun problema di cookie di terze parti
+    window.location.replace("https://script.google.com/macros/s/AKfycbxXsnyE1QeJC4J1freVyFjGnzEgGhV0j1J2WVG0yri5D37O3tzuMovzXfKygQyOGGgR/exec");
   </script>
 </body>
 </html>
